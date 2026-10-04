@@ -230,6 +230,9 @@ h1 { margin: 0; color: #153936; font: 600 clamp(42px, 5vw, 76px)/.95 'Playfair D
 .sidecard-action:hover { color: #193d39; background: transparent; border-color: #8ba399; }
 .atlas-info-button { position: absolute; z-index: 907; right: 18px; bottom: 18px; display: grid; width: 31px; height: 31px; place-items: center; border: 1px solid #aebeb5; border-radius: 50%; color: #385b53; background: rgba(248, 249, 244, .92); font: 500 14px Georgia, serif; }
 .atlas-info-button:hover { color: #193d39; background: #fff; }
+.map-view-actions { top: 16px; right: 18px; left: auto; z-index: 908; }
+.map-view-actions button { border-color: #cddbd0; color: #224940; background: #fff; }
+.map-view-actions button:hover { border-color: #8ba399; color: #193d39; background: #f7faf5; }
 .atlas-info-backdrop { position: fixed; z-index: 2200; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(19, 39, 39, .28); }
 .atlas-info-dialog { width: min(510px, 100%); max-height: min(690px, calc(100svh - 40px)); overflow: auto; padding: 24px 27px; border: 1px solid #cbd5ce; color: #263a36; background: #f8f9f4; }
 .atlas-info-heading { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #dce3dc; }
@@ -275,6 +278,7 @@ h1 { margin: 0; color: #153936; font: 600 clamp(42px, 5vw, 76px)/.95 'Playfair D
 	.splash-description { font-size: 14px; }
 	.hover-label { top: auto; right: 10px; bottom: 58px; min-width: 170px; }
 	.atlas-toast { top: auto; right: 10px; bottom: 165px; }
+	.map-view-actions { top: 54px; right: 10px; left: auto; max-width: calc(100% - 20px); }
 }
 .hover-label { border-left: 0; border-top: 1px solid #8fa59a; background: rgba(246,247,242,.94); }
 .hover-label span { color: #657f74; }

@@ -1,10 +1,10 @@
 # Philippine GeoBase
 
-**Status: Beta / experimental draft**
+**Status: Beta — experimental draft**
 
 Philippine GeoBase is an open-source map application prototype for exploring Philippine administrative boundaries, from regions and provinces to cities, municipalities, and barangays.
 
-The interface and navigation are a work in progress. In particular, barangay polygon coverage, rendering, and navigation are still being tested and may be incomplete or inaccurate. This project is not an official government mapping service. Do not use it as the sole source for legal, emergency, planning, or other decisions that require authoritative boundaries.
+The main unresolved issue is the barangay polygons: coverage and geometry are still being checked, and some polygons may be missing, simplified, or inaccurate. Barangay rendering and navigation are under active development. This is not an official government mapping service; do not use it as the sole source for decisions that require authoritative boundaries.
 
 ## Run locally
 

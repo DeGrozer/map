@@ -326,6 +326,28 @@ function App() {
     const map = mapRef.current
     if (map) map.setZoom(Math.min(map.getZoom() + 0.7, map.getMaxZoom()), { animate: true })
   }
+  async function goToRegionView() {
+    if (!regionScope) return
+    setDetailSideOpen(false)
+    setSelectedPlace(null)
+    setSelectedPlaceLevel(null)
+    setActiveMunicipality(null)
+    setSelectedBarangays([])
+    setShowBarangays(false)
+    setShowMunicipalityScope(false)
+    await changeLevel('province', regionScope, [regionScope])
+  }
+  async function goToFullMap() {
+    setDetailSideOpen(false)
+    setSelectedPlace(null)
+    setSelectedPlaceLevel(null)
+    setActiveMunicipality(null)
+    setSelectedBarangays([])
+    setShowBarangays(false)
+    setShowMunicipalityScope(false)
+    setRegionScope(null)
+    await changeLevel('region', null, [])
+  }
   async function goTo(index: number) { setDetailSideOpen(false); setSelectedPlace(null); setSelectedPlaceLevel(null); setActiveMunicipality(null); setSelectedBarangays([]); setShowBarangays(false); setShowMunicipalityScope(false); const target = index < 0 ? null : trail[index]; setRegionScope(target?.level === 'region' ? target : target ? trail[0] ?? null : null); const level: GeoLevel = target ? target.level : 'region'; const parent = target ? trail[index - 1] ?? null : null; await changeLevel(level, parent, index < 0 ? [] : trail.slice(0, index)) }
 
   return <main className={`map-experience${enteredAtlas ? '' : ' is-splashed'}`}>
@@ -341,6 +363,10 @@ function App() {
         </div>}
         <div className="map-info"><span>{levelLabels[displayedLevel].toUpperCase()}</span><strong>{visibleFeatures.length.toLocaleString()} boundaries</strong><small>CLICK A BOUNDARY TO EXPLORE</small></div>
         <div ref={mapElement} className="leaflet-map" aria-label={`Interactive map showing Philippine ${levelLabels[displayedLevel].toLowerCase()}`} />
+        {trail.length > 0 && <nav className="map-filters map-view-actions" aria-label="Map view navigation">
+          {regionScope && <button onClick={() => void goToRegionView()}>Region view</button>}
+          <button onClick={() => void goToFullMap()}>Full map</button>
+        </nav>}
         {showBarangays && activeMunicipality && <div className="map-exploration"><span>EXPLORING</span><strong>{featureName(activeMunicipality)}</strong><small>PSGC {featureCode(activeMunicipality)}</small></div>}
         {hovered && <div className="hover-label"><span>{hoverContext(hovered)}</span><strong>{displayedLevel === 'region' ? regionName(hovered) : featureName(hovered)}</strong><small>PSGC {featureCode(hovered)}</small></div>}
         {loadingBarangays && activeMunicipality && <div className="atlas-toast"><span>BOUNDARY INDEX</span><strong>Plotting barangays</strong><small>{featureName(activeMunicipality)} · PSGC {featureCode(activeMunicipality)}</small></div>}
