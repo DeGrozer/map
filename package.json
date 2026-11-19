@@ -3,11 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
-    "predev": "python scripts/sync-psgc.py --if-ready",
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "oxlint",
     "sync:psgc": "python scripts/sync-psgc.py",
     "validate:boundaries": "node scripts/validate-boundaries.mjs",
     "preview": "vite preview"
@@ -23,11 +24,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^4.3.4",
-    "oxlint": "^1.81.0",
     "typescript": "~6.0.2",
     "vite": "^6.3.5"
-  },
-  "optionalDependencies": {
-    "@oxlint/binding-win32-x64-msvc": "1.83.0"
   }
 }
