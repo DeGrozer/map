@@ -19,7 +19,6 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@oxlint/binding-win32-x64-msvc": "^1.94.0",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
@@ -27,5 +26,8 @@
     "oxlint": "^1.81.0",
     "typescript": "~6.0.2",
     "vite": "^6.3.5"
+  },
+  "optionalDependencies": {
+    "@oxlint/binding-win32-x64-msvc": "1.83.0"
   }
 }
