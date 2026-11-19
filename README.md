@@ -29,6 +29,18 @@ The app combines boundary geometry with PSGC reference lookups. These are separa
 - **PSGC lookup API:** [PSGC Cloud](https://psgc.cloud/), developed by John Joshua A. Lipio. The app uses it for geographic reference/classification lookups. It is a community-provided service, not the official PSA API; verify important information against official records and follow the service's [terms](https://psgc.cloud/terms).
 - **Original records:** [Philippine Statistics Authority (PSA) PSGC](https://psa.gov.ph/classification/psgc/) and [NAMRIA](https://namria.gov.ph/).
 
+Run `npm run validate:boundaries` to compare the curated barangay GeoJSON against the live PSGC API's
+barangay codes and names. This validation checks key coverage and mismatches; it cannot prove that
+polygon topology is authoritative or geometrically error-free.
+
+Run `npm run sync:psgc` to download the complete PSGC barangay, city/municipality, province, and region
+JSON sets and reconcile them with the curated local boundary GeoJSON. The generated files are stored in
+`public/data/`; PSGC API pagination is not relied upon.
+
+The sync script uses the 2023-4Q high-resolution GeoJSON archive (10% vertex retention) released by
+faeldon/philippines-json-maps, built from OCHA COD-AB / NAMRIA and PSA sources. It reads and preserves
+the source coordinates; it does not invent, clip, or subtract polygon geometry.
+
 The app's MIT license applies to this project's original application code. It does not relicense the boundary data, PSGC Cloud service, or third-party dependencies. Their source terms and attribution requirements remain separate.
 
 ## Credits

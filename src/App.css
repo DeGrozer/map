@@ -1,10 +1,9 @@
 #root { min-height: 100svh; }
-.map-experience { min-height: 100svh; color: #18322f; background: #d9f0f3; overflow: hidden; }
+.map-experience { min-height: 100svh; color: #173b43; background: #dceff4; overflow: hidden; }
 .map-experience.is-splashed .brand-stamp,
 .map-experience.is-splashed .map-filters,
 .map-experience.is-splashed .map-info,
 .map-experience.is-splashed .map-scale,
-.map-experience.is-splashed .hover-label,
 .map-experience.is-splashed .map-exploration,
 .map-experience.is-splashed .atlas-toast,
 .map-experience.is-splashed .atlas-info-button,
@@ -32,10 +31,6 @@ h1 { margin: 0; color: #153936; font: 600 clamp(42px, 5vw, 76px)/.95 'Playfair D
 .map-barangay .map-feature { fill: #fbf8eb; stroke: #5c8eaa; stroke-width: .18; }
 .map-barangay .map-feature:hover, .map-barangay .map-feature.is-hovered { fill: #c3dfeb; stroke: #155579; stroke-width: .3; }
 .map-vignette { position: absolute; inset: 0; pointer-events: none; }
-.hover-label { position: absolute; right: 28px; top: 22%; display: flex; min-width: 190px; flex-direction: column; padding: 11px 14px; border-left: 1px solid #bd593f; color: #31534d; background: rgba(246,247,242,.94); pointer-events: none; }
-.hover-label span { color: #bd593f; font: 500 8px 'DM Mono', monospace; letter-spacing: .08em; }
-.hover-label strong { margin-top: 5px; color: #24463f; font: 600 16px/1.2 'Playfair Display', serif; }
-.hover-label small { margin-top: 7px; padding-top: 6px; border-top: 1px solid #d8e1db; color: #718b82; font: 8px 'DM Mono', monospace; }
 .map-state { position: absolute; inset: 0; display: grid; place-items: center; color: #8ca39b; font: 11px 'DM Mono', monospace; letter-spacing: .12em; background: rgba(246,247,242,.48); pointer-events: none; }
 .map-loading-intro { z-index: 1200; align-content: center; gap: 12px; color: #174f69; background: rgba(131, 200, 212, .97); }
 .map-loading-intro span { color: #fff; font: 500 10px 'DM Mono', monospace; letter-spacing: .16em; }
@@ -74,22 +69,21 @@ h1 { margin: 0; color: #153936; font: 600 clamp(42px, 5vw, 76px)/.95 'Playfair D
 .source-copy a { color: #668b7d; text-decoration: underline; text-underline-offset: 3px; }
 .map-footer { display: flex; justify-content: space-between; padding: 17px 38px; color: #8da49b; border-top: 1px solid #d8e1db; font: 9px 'DM Mono', monospace; letter-spacing: .08em; }
 .map-footer span:first-child { color: #d36548; }
-@media (max-width: 700px) { .minimal-header { height: 65px; padding: 0 19px; } .map-stage { min-height: calc(100svh - 65px); padding: 28px 19px 18px; } .map-wrap { min-height: calc(100svh - 210px); margin: 0 -15px; } .map { width: 106vw; height: 63vh; } .hover-label { right: 8%; top: 18%; } .map-scale { bottom: 9px; left: 19px; } .map-controls { bottom: 9px; right: 18px; } .location-panel { top: auto; right: 10px; bottom: 10px; left: 10px; width: auto; max-height: 70vh; overflow: auto; padding: 27px 22px 22px; } .location-panel h2 { font-size: 31px; } .map-footer { padding: 15px 19px; font-size: 8px; } .map-footer span:last-child { display: none; } }
+@media (max-width: 700px) { .minimal-header { height: 65px; padding: 0 19px; } .map-stage { min-height: calc(100svh - 65px); padding: 28px 19px 18px; } .map-wrap { min-height: calc(100svh - 210px); margin: 0 -15px; } .map { width: 106vw; height: 63vh; } .map-scale { bottom: 9px; left: 19px; } .map-controls { bottom: 9px; right: 18px; } .location-panel { top: auto; right: 10px; bottom: 10px; left: 10px; width: auto; max-height: 70vh; overflow: auto; padding: 27px 22px 22px; } .location-panel h2 { font-size: 31px; } .map-footer { padding: 15px 19px; font-size: 8px; } .map-footer span:last-child { display: none; } }
 
-.leaflet-map { width: 100%; height: 100%; min-height: 560px; background: #83c8d4; cursor: grab; }
+.leaflet-map { width: 100%; height: 100%; min-height: 560px; background: #63c3d8; cursor: grab; }
 .map-info { position: absolute; z-index: 901; top: 18px; right: 18px; display: flex; flex-direction: column; padding: 11px 14px; color: #174f69; background: rgba(225, 246, 247, .9); border-left: 2px solid #d2a52f; box-shadow: 0 7px 22px rgba(28, 80, 97, .12); pointer-events: none; }
 .map-info span { color: #d09d27; font: 500 9px 'DM Mono', monospace; letter-spacing: .1em; }
 .map-info strong { margin-top: 5px; font-size: 14px; }
 .map-info small { margin-top: 3px; color: #568091; font: 9px 'DM Mono', monospace; }
 .leaflet-map:active { cursor: grabbing; }
-.leaflet-container { font-family: 'DM Sans', sans-serif; background: #83c8d4; }
+.leaflet-container { font-family: 'DM Sans', sans-serif; background: #63c3d8; }
 .leaflet-control-zoom { margin: 0 18px 18px 0 !important; border: 1px solid #4f8294 !important; box-shadow: 0 5px 18px rgba(28, 80, 97, .16) !important; }
 .leaflet-control-zoom a { color: #174f69 !important; background: rgba(240, 249, 249, .95) !important; border-color: #9bc5cf !important; }
 .leaflet-control-zoom a:hover { color: #d09d27 !important; background: #fffdf2 !important; }
-.map-wrap { background: #83c8d4; border: 1px solid #5faab9; overflow: hidden; }
+.map-wrap { background: #63c3d8; border: 1px solid #3d93a8; overflow: hidden; }
 .map-state { z-index: 900; background: rgba(131, 200, 212, .68); }
 .map-scale { z-index: 901; padding: 7px 10px; color: #225c70; background: rgba(225, 246, 247, .76); }
-.hover-label { z-index: 902; }
 .leaflet-interactive { vector-effect: non-scaling-stroke; }
 .brand-stamp, .map-exploration { position: absolute; z-index: 906; display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; color: #174f69; background: rgba(225, 246, 247, .92); border-left: 2px solid #d2a52f; box-shadow: 0 7px 22px rgba(28, 80, 97, .12); pointer-events: none; }
 .brand-stamp { top: 16px; left: 16px; }
@@ -125,16 +119,15 @@ h1 { margin: 0; color: #153936; font: 600 clamp(42px, 5vw, 76px)/.95 'Playfair D
 	height: 100svh !important;
 	margin: 0 !important;
 	border: 0 !important;
-	background: #83c8d4 !important;
+	background: #63c3d8 !important;
 }
 
 .leaflet-map {
-	background: #83c8d4 !important;
+	background: #63c3d8 !important;
 }
 
 /* Place detail and selected-boundary focus */
 .map-wrap { isolation: isolate; }
-.spotlight-wash { position: absolute; z-index: 650; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 47%, transparent 0 17%, rgba(12, 26, 31, .24) 31%, rgba(12, 26, 31, .65) 100%); }
 .map-state { z-index: 1100; pointer-events: auto; }
 .leaflet-spotlight-pane { z-index: 700 !important; }
 .detail-backdrop { position: fixed; z-index: 1500; inset: 0; display: grid; place-items: center; padding: 28px; background: rgba(10, 22, 27, .34); backdrop-filter: blur(3px); animation: backdrop-in .22s ease-out; }
@@ -256,14 +249,21 @@ h1 { margin: 0; color: #153936; font: 600 clamp(42px, 5vw, 76px)/.95 'Playfair D
 .atlas-toast span { color: #71887d; font: 500 8px 'DM Mono', monospace; letter-spacing: .1em; }
 .atlas-toast strong { font: 600 14px 'Playfair Display', serif; }
 .atlas-toast small { color: #718b82; font: 8px 'DM Mono', monospace; }
-.atlas-splash { position: fixed; z-index: 2000; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 28px 42px 25px; color: #f7f5e8; background: linear-gradient(90deg, rgba(12, 42, 49, .93) 0%, rgba(12, 42, 49, .82) 36%, rgba(12, 42, 49, .18) 100%); animation: splash-in .65s ease-out both; }
-.splash-grid, .splash-footer { display: flex; justify-content: space-between; gap: 20px; color: rgba(239, 246, 232, .72); font: 11px 'IBM Plex Mono', monospace; letter-spacing: 0; }
-.splash-copy { width: min(510px, 100%); margin: auto 0; }
+.atlas-splash { position: fixed; z-index: 2000; inset: 0; display: grid; grid-template-rows: auto 1fr auto; padding: 28px 42px 25px; color: #f7f5e8; background: linear-gradient(90deg, rgba(12, 42, 49, .94) 0%, rgba(12, 42, 49, .84) 34%, rgba(12, 42, 49, .16) 68%, rgba(12, 42, 49, .04) 100%); animation: splash-in .65s ease-out both; }
+.splash-grid, .splash-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; color: rgba(239, 246, 232, .78); font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .08em; }
+.splash-grid span, .splash-footer span { max-width: 48%; }
+.splash-grid span:last-child, .splash-footer span:last-child { text-align: right; }
+.splash-copy { width: min(510px, 100%); margin: auto 0; align-self: center; }
 .splash-copy > p:first-child { margin: 0 0 12px; color: #e4d39a; font: 500 16px 'Literata', serif; letter-spacing: 0; }
 .splash-copy h2 { margin: 0; color: #f7f5e8; font: 600 88px/.88 'Barlow Condensed', sans-serif; letter-spacing: 0; }
 .splash-copy h2 em { color: #b6d6d4; font-style: normal; font-weight: 400; }
+.splash-beta { display: inline-block; margin-top: 12px; padding: 5px 8px; border: 1px solid rgba(228,211,154,.62); border-radius: 999px; color: #e4d39a; background: rgba(12,42,49,.26); font: 600 8px 'IBM Plex Mono', monospace; letter-spacing: .12em; }
 .splash-description { margin: 19px 0 0; color: rgba(239, 246, 232, .82); font: 16px/1.5 'Source Sans 3', sans-serif; }
-.splash-enter { display: inline-flex; align-items: center; gap: 12px; margin-top: 23px; padding: 0; border: 0; color: #f7f5e8; background: transparent; font: 600 18px 'Barlow Condensed', sans-serif; letter-spacing: 0; text-align: left; }
+.splash-note { margin: 9px 0 0; color: rgba(239, 246, 232, .64); font: 9px/1.5 'IBM Plex Mono', monospace; letter-spacing: .04em; }
+.splash-actions { display: flex; align-items: center; gap: 22px; margin-top: 23px; }
+.splash-enter { display: inline-flex; align-items: center; gap: 12px; padding: 0; border: 0; color: #f7f5e8; background: transparent; font: 600 18px 'Barlow Condensed', sans-serif; letter-spacing: 0; text-align: left; }
+.splash-skip { padding: 7px 0; border: 0; border-bottom: 1px solid rgba(247,245,232,.34); color: rgba(247,245,232,.72); background: transparent; font: 500 10px 'IBM Plex Mono', monospace; }
+.splash-skip:hover { color: #e4d39a; border-bottom-color: #e4d39a; }
 .splash-enter:not(:disabled):hover { color: #e4d39a; }
 .splash-enter:disabled { color: rgba(239, 246, 232, .56); cursor: progress; }
 .splash-enter span { font-size: 15px; }
@@ -272,14 +272,47 @@ h1 { margin: 0; color: #153936; font: 600 clamp(42px, 5vw, 76px)/.95 'Playfair D
 @media (max-width: 700px) {
 	.place-sidecard { top: auto; bottom: 0; left: 0; width: 100%; height: 41svh; min-height: 275px; padding: 17px 20px 18px; background: #f8f9f4; }
 	.place-sidecard h2 { font-size: 25px; }
-	.atlas-splash { padding: 19px 20px 18px; background: linear-gradient(90deg, rgba(12, 42, 49, .94), rgba(12, 42, 49, .62)); }
+	.atlas-splash { padding: 19px 20px 18px; background: linear-gradient(90deg, rgba(12, 42, 49, .96), rgba(12, 42, 49, .68)); }
 	.splash-grid, .splash-footer { font-size: 9px; }
+	.splash-grid span, .splash-footer span { max-width: 56%; }
 	.splash-copy h2 { font-size: 61px; }
 	.splash-description { font-size: 14px; }
-	.hover-label { top: auto; right: 10px; bottom: 58px; min-width: 170px; }
 	.atlas-toast { top: auto; right: 10px; bottom: 165px; }
 	.map-view-actions { top: 54px; right: 10px; left: auto; max-width: calc(100% - 20px); }
 }
-.hover-label { border-left: 0; border-top: 1px solid #8fa59a; background: rgba(246,247,242,.94); }
-.hover-label span { color: #657f74; }
 .brand-stamp, .map-exploration { border-left: 0; box-shadow: none; }
+
+
+.place-hover-tooltip {
+	border: 0;
+	border-radius: 6px;
+	padding: 8px 10px;
+	color: #173d48;
+	background: rgba(248, 250, 245, .98);
+	box-shadow: none;
+	pointer-events: none;
+}
+.place-hover-tooltip::before,
+.leaflet-tooltip.place-hover-tooltip::before {
+	display: none !important;
+}
+.leaflet-interactive:focus,
+.leaflet-interactive:focus-visible,
+.leaflet-overlay-pane svg:focus,
+.leaflet-overlay-pane path:focus,
+.leaflet-overlay-pane path:focus-visible {
+	outline: none !important;
+	box-shadow: none !important;
+}
+.place-hover-tooltip span,
+.place-hover-tooltip small {
+	display: block;
+	color: #71887d;
+	font: 500 8px 'DM Mono', monospace;
+	letter-spacing: .04em;
+}
+.place-hover-tooltip strong {
+	display: block;
+	margin: 3px 0;
+	font: 600 14px 'Playfair Display', serif;
+}

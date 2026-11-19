@@ -1,30 +1,62 @@
 import type { GeoLevel, Geography } from './types'
 
-const API = 'https://psgc.cloud/api/v2'
-
-type ApiItem = { code: string; name: string; type?: string; status?: string; district?: string; zip_code?: string; region?: string; province?: string; city_municipality?: string; provinces_count?: number; cities_municipalities_count?: number; barangays_count?: number }
-
 async function get<T>(path: string): Promise<T> {
-  const response = await fetch(`${API}${path}`)
+  const endpoint = path.startsWith('/regions') ? '/data/regions.json'
+    : path.startsWith('/provinces') ? '/data/provinces.json'
+    : path.startsWith('/barangays') ? '/data/barangays.json'
+    : '/data/municipalities.json'
+  const response = await fetch(endpoint)
   if (!response.ok) throw new Error(`PSGC request failed: ${response.status}`)
-  const payload = await response.json() as { data: T }
-  return payload.data
+  return await response.json() as T
 }
 
-function mapItem(item: ApiItem, level: GeoLevel, parentCode?: string): Geography {
-  return { code: item.code, name: item.name, level, type: item.type, status: item.status, district: item.district, zipCode: item.zip_code, region: item.region, province: item.province, municipality: item.city_municipality, provincesCount: item.provinces_count, citiesMunicipalitiesCount: item.cities_municipalities_count, barangaysCount: item.barangays_count, parentCode }
+function canonicalParentCode(value: string): string {
+  const digits = value.replace(/\D/g, '')
+  if (digits.length === 10) return digits.slice(0, 2) + digits.slice(3)
+  return digits
 }
 
 export async function listChildren(parent: Geography | null): Promise<Geography[]> {
-  if (!parent) return (await get<ApiItem[]>('/regions')).map((item) => mapItem(item, 'region'))
-  if (parent.level === 'region') return (await get<ApiItem[]>(`/regions/${parent.code}/provinces`)).map((item) => mapItem(item, 'province', parent.code))
-  if (parent.level === 'province') return (await get<ApiItem[]>(`/provinces/${parent.code}/cities-municipalities`)).map((item) => mapItem(item, 'municipality', parent.code))
-  if (parent.level === 'municipality') return (await get<ApiItem[]>(`/cities-municipalities/${parent.code}/barangays`)).map((item) => mapItem(item, 'barangay', parent.code))
+  if (!parent) {
+    const regions = await get<Array<{ psgc10DigitCode: string; name: string }>>('/regions')
+    return regions.map((item) => ({ code: item.psgc10DigitCode, name: item.name, level: 'region' }))
+  }
+  if (parent.level === 'region') {
+    const provinces = await get<Array<{ psgc10DigitCode: string; name: string; regionCode: string }>>('/provinces')
+    return provinces
+      .filter((item) => canonicalParentCode(item.regionCode) === canonicalParentCode(parent.code))
+      .map((item) => ({ code: item.psgc10DigitCode, name: item.name, level: 'province', parentCode: parent.code }))
+  }
+  if (parent.level === 'province') {
+    const municipalities = await get<Array<{ psgc10DigitCode: string; name: string; provinceCode: string; isCity: boolean; isMunicipality: boolean }>>('/municipalities')
+    return municipalities
+      .filter((item) => canonicalParentCode(item.provinceCode) === canonicalParentCode(parent.code))
+      .map((item) => ({ code: item.psgc10DigitCode, name: item.name, level: 'municipality', type: item.isCity ? 'City' : item.isMunicipality ? 'Mun' : '', parentCode: parent.code }))
+  }
+  if (parent.level === 'municipality') {
+    const barangays = await get<Array<{ psgc10DigitCode: string; name: string; municipalityCode: false | string; cityCode: false | string }>>('/barangays')
+    return barangays
+      .filter((item) => canonicalParentCode(String(item.municipalityCode || item.cityCode || '')) === canonicalParentCode(parent.code))
+      .map((item) => ({ code: item.psgc10DigitCode, name: item.name, level: 'barangay', parentCode: parent.code }))
+  }
   return []
 }
 
 export async function getGeography(code: string, level: GeoLevel): Promise<Geography> {
-  const endpoint = level === 'region' ? 'regions' : level === 'province' ? 'provinces' : level === 'municipality' ? 'cities-municipalities' : 'barangays'
-  const item = await get<ApiItem>(`/${endpoint}/${code}`)
-  return mapItem(item, level)
+  const endpoint = level === 'region'
+    ? '/regions'
+    : level === 'province'
+      ? '/provinces'
+      : level === 'municipality'
+        ? '/municipalities'
+        : '/barangays'
+  const items = await get<Array<{ psgc10DigitCode: string; name: string; isCity?: boolean; isMunicipality?: boolean }>>(endpoint)
+  const item = items.find((entry) => entry.psgc10DigitCode === code.replace(/^PH/, ''))
+  if (!item) throw new Error(`PSGC geography not found: ${code}`)
+  return {
+    code: item.psgc10DigitCode,
+    name: item.name,
+    level,
+    type: item.isCity ? 'City' : item.isMunicipality ? 'Mun' : undefined,
+  }
 }
